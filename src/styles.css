@@ -128,7 +128,7 @@ textarea { min-height: 132px; resize: vertical; }
 .swatch { border: 2px solid transparent; border-radius: 999px; aspect-ratio: 1; }
 input[type='range'] { accent-color: #38bdf8; width: 100%; }
 
-.primary, .secondary {
+.primary, .secondary, .upload-button {
   align-items: center;
   border: 0;
   border-radius: 16px;
@@ -140,13 +140,36 @@ input[type='range'] { accent-color: #38bdf8; width: 100%; }
 }
 
 .primary { background: linear-gradient(135deg, #38bdf8, #818cf8); color: #020617; }
-.secondary { background: rgba(148, 163, 184, 0.16); color: #e2e8f0; }
+.secondary, .upload-button { background: rgba(148, 163, 184, 0.16); color: #e2e8f0; }
+.upload-button { text-align: center; }
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
 
 .canvas-panel {
   overflow: auto;
   border-radius: 30px;
   padding: 12px;
   background: linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(129, 140, 248, 0.2));
+}
+
+.drop-hint {
+  color: #dbeafe;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 6px 10px 14px;
+  text-align: center;
+}
+
+.canvas-panel.dragging {
+  outline: 3px dashed #7dd3fc;
+  outline-offset: 4px;
 }
 
 canvas {

@@ -26,6 +26,8 @@ const elements = {
   canvas: document.querySelector('#paint-canvas'),
   clear: document.querySelector('#clear-canvas'),
   download: document.querySelector('#download-sketch'),
+  upload: document.querySelector('#image-upload'),
+  dropZone: document.querySelector('#drop-zone'),
 };
 
 const ctx = elements.canvas.getContext('2d');
@@ -49,6 +51,31 @@ function resetCanvas() {
   ctx.arc(720, 120, 160, 0, Math.PI * 2);
   ctx.fill();
   ctx.globalAlpha = 1;
+}
+
+function drawUploadedImage(file) {
+  if (!file || !file.type.startsWith('image/')) return;
+
+  const reader = new FileReader();
+  reader.addEventListener('load', () => {
+    const image = new Image();
+    image.addEventListener('load', () => {
+      resetCanvas();
+      const scale = Math.min(820 / image.width, 500 / image.height);
+      const width = image.width * scale;
+      const height = image.height * scale;
+      const x = (900 - width) / 2;
+      const y = (560 - height) / 2;
+
+      ctx.save();
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.35)';
+      ctx.shadowBlur = 28;
+      ctx.drawImage(image, x, y, width, height);
+      ctx.restore();
+    });
+    image.src = reader.result;
+  });
+  reader.readAsDataURL(file);
 }
 
 function renderStyleOptions() {
@@ -131,6 +158,22 @@ function bindEvents() {
   elements.brushSize.addEventListener('input', (event) => {
     state.brushSize = Number(event.target.value);
     elements.sizeLabel.textContent = `${state.brushSize}px`;
+  });
+  elements.upload.addEventListener('change', (event) => {
+    drawUploadedImage(event.target.files?.[0]);
+    event.target.value = '';
+  });
+  elements.dropZone.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    elements.dropZone.classList.add('dragging');
+  });
+  elements.dropZone.addEventListener('dragleave', () => {
+    elements.dropZone.classList.remove('dragging');
+  });
+  elements.dropZone.addEventListener('drop', (event) => {
+    event.preventDefault();
+    elements.dropZone.classList.remove('dragging');
+    drawUploadedImage(event.dataTransfer.files?.[0]);
   });
   elements.clear.addEventListener('click', resetCanvas);
   elements.download.addEventListener('click', downloadSketch);

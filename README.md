@@ -7,6 +7,7 @@ AI Paint Tool is a lightweight browser workspace for planning AI image-generatio
 - Dependency-free HTML, CSS, and JavaScript app shell for fast local development.
 - Prompt enhancer that combines the user's idea, selected style, and palette colors.
 - Touch and mouse sketch canvas with adjustable brush size and color.
+- Direct image upload and drag-and-drop reference placement on the canvas.
 - Palette presets, canvas clearing, and PNG export.
 - Polished dark UI that is ready to connect to an AI image-generation backend.
 
@@ -28,4 +29,4 @@ Open http://localhost:4173 in your browser and start sketching.
 
 - Connect the enhanced prompt to an image-generation API.
 - Add project persistence for prompts, palettes, and sketches.
-- Support image uploads for style transfer or inpainting workflows.
+- Connect uploaded references to style transfer or inpainting workflows.

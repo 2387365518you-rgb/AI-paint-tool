@@ -31,11 +31,14 @@
           <div id="swatches" class="swatches"></div>
           <label for="brush-size">Size: <span id="size-label"></span></label>
           <input id="brush-size" type="range" min="4" max="52" />
+          <label class="upload-button" for="image-upload">⇪ Upload image</label>
+          <input id="image-upload" class="visually-hidden" type="file" accept="image/*" />
           <button id="clear-canvas" class="secondary">⌫ Clear</button>
           <button id="download-sketch" class="primary">⬇ Export PNG</button>
         </aside>
 
-        <div class="canvas-panel">
+        <div id="drop-zone" class="canvas-panel">
+          <div class="drop-hint">Drop an image here to use it as a painting reference</div>
           <canvas id="paint-canvas" aria-label="Sketch canvas"></canvas>
         </div>
       </section>
