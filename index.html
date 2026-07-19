@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A browser workspace for planning AI image prompts, palettes, and sketch compositions." />
+    <title>AI Paint Tool</title>
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">✦ AI-assisted creative studio</p>
+          <h1>Plan prompts, choose palettes, and sketch composition in one focused workspace.</h1>
+          <p class="subtitle">This optimized starter turns the project into a polished, responsive canvas app ready to connect to an image-generation API.</p>
+        </div>
+        <div class="prompt-card">
+          <label for="prompt">Creative prompt</label>
+          <textarea id="prompt"></textarea>
+          <label for="style">Style direction</label>
+          <select id="style"></select>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <aside class="toolbar" aria-label="Painting controls">
+          <h2>🎨 Palette</h2>
+          <div id="palettes" class="palette-list"></div>
+          <h2>Brush</h2>
+          <div id="swatches" class="swatches"></div>
+          <label for="brush-size">Size: <span id="size-label"></span></label>
+          <input id="brush-size" type="range" min="4" max="52" />
+          <label class="upload-button" for="image-upload">⇪ Upload image</label>
+          <input id="image-upload" class="visually-hidden" type="file" accept="image/*" />
+          <button id="clear-canvas" class="secondary">⌫ Clear</button>
+          <button id="download-sketch" class="primary">⬇ Export PNG</button>
+        </aside>
+
+        <div id="drop-zone" class="canvas-panel">
+          <div class="drop-hint">Drop an image here to use it as a painting reference</div>
+          <canvas id="paint-canvas" aria-label="Sketch canvas"></canvas>
+        </div>
+      </section>
+
+      <section class="output-card">
+        <h2>✨ Enhanced generation prompt</h2>
+        <p id="enhanced-prompt"></p>
+      </section>
+    </main>
+    <script src="src/app.js" defer></script>
+  </body>
+</html>
